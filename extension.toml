@@ -1,7 +1,7 @@
 id = "jinja-lsp"
 name = "jinja-lsp"
 description = "Jinja template language server"
-version = "0.1.0"
+version = "0.1.91"
 schema_version = 1
 authors = ["uros-5"]
 repository = "https://github.com/uros-5/jinja-lsp"
@@ -9,9 +9,4 @@ repository = "https://github.com/uros-5/jinja-lsp"
 [language_servers.jinja-lsp]
 name = "jinja-lsp"
 languages = ["HTML", "Jinja", "Rust", "Python"]
-command = "./jinja-lsp"
-args = ["--stdio"]
 
-[languages.Jinja]
-name = "Jinja"
-path_suffixes = ["jinja", "j2"]

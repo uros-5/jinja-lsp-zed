@@ -1,6 +1,8 @@
 use std::fs;
 use zed_extension_api::{self as zed, settings::LspSettings, Result};
 
+// CREDITS: https://github.com/zed-extensions/typst/blob/main/src/typst.rs
+
 struct JinjaLspExtension {
     cached_binary_path: Option<String>,
 }
@@ -96,8 +98,7 @@ impl JinjaLspExtension {
             .ok_or_else(|| format!("no asset found matching {:?}", asset_name))?;
 
         let version_dir = format!("jinja-lsp-{}", release.version);
-        fs::create_dir_all(&version_dir)
-            .map_err(|e| format!("failed to create directory: {e}"))?;
+        fs::create_dir_all(&version_dir).map_err(|e| format!("failed to create directory: {e}"))?;
 
         let binary_path = if cfg!(windows) {
             format!("{version_dir}/jinja-lsp.exe")
@@ -123,8 +124,7 @@ impl JinjaLspExtension {
             let entries =
                 fs::read_dir(".").map_err(|e| format!("failed to list working directory {e}"))?;
             for entry in entries {
-                let entry =
-                    entry.map_err(|e| format!("failed to load directory entry {e}"))?;
+                let entry = entry.map_err(|e| format!("failed to load directory entry {e}"))?;
                 if entry.file_name().to_str() != Some(&version_dir) {
                     fs::remove_dir_all(entry.path()).ok();
                 }
@@ -158,9 +158,7 @@ impl zed::Extension for JinjaLspExtension {
 
         Ok(zed::Command {
             command: binary.path,
-            args: binary
-                .args
-                .unwrap_or_else(|| vec!["--stdio".to_string()]),
+            args: binary.args.unwrap_or_else(|| vec!["--stdio".to_string()]),
             env: binary.environment.unwrap_or_default(),
         })
     }
