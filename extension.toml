@@ -1,12 +1,16 @@
 id = "jinja-lsp"
 name = "jinja-lsp"
-description = "Jinja template language server"
+description = "Language server for jinja2"
 version = "0.1.91"
 schema_version = 1
 authors = ["uros-5"]
 repository = "https://github.com/uros-5/jinja-lsp"
 
+[grammars.jinja2]
+repository = "https://github.com/uros-5/tree-sitter-jinja2"
+commit = "58cdf2650fea668a81a43fd8ad836b7a9351d34a"
+
 [language_servers.jinja-lsp]
 name = "jinja-lsp"
-languages = ["HTML", "Jinja", "Rust", "Python"]
+languages = ["jinja2", "Rust", "Python"]
 
